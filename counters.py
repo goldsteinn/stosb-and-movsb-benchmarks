@@ -216,9 +216,6 @@ class Run():
         return True
 
     def valid(self):
-        if self.set_len != 256:
-            return False
-
         if not self.is_loop():
             if "CACHE" not in self.mov_todo:
                 return False
