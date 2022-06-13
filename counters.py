@@ -4,7 +4,7 @@ import json
 import struct
 import subprocess
 
-NRUNS = 5
+NRUNS = 1
 
 
 def bstr_to_int(bstr):
@@ -216,6 +216,7 @@ class Run():
         return True
 
     def valid(self):
+
         if not self.is_loop():
             if "CACHE" not in self.mov_todo:
                 return False

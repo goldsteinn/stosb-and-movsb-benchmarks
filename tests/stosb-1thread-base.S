@@ -247,7 +247,7 @@ L(copy_loop):
 # else
 	ASSERT_BE (movq %rdi, %r14;subq %rcx, %r14;cmp $SET_LEN - END_OFFSET, %r14);
 # endif
-    
+
 # if ALIGN_TO
 #  if RAND_SIZE
 	ASSERT_B (movq %rdi, %r14;subq %rcx, %r14;cmp $(SET_LEN + 256 - END_OFFSET), %r14);
@@ -348,7 +348,18 @@ L(copy_loop):
 #  else
 	RASSERT_B (rcx, SET_LEN + 256);
 #  endif
+
+
+#  if ALIGN_PTR
 	ASSERT_Z (test $(VEC_SIZE * ALIGN_TO - 1), %rdi);
+#  endif
+#  if ALIGN_END
+	ASSERT_Z (movq %rdi, %r14;addq %rcx, %r14;test $(VEC_SIZE * ALIGN_TO - 1), %r14);
+#  endif
+#  if ALIGN_LEN
+	ASSERT_Z (test $(VEC_SIZE * ALIGN_TO - 1), %rcx);
+#  endif
+
 # endif
 
 	rep	stosb
