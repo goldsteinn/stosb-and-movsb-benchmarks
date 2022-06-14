@@ -85,7 +85,7 @@
 # define RDTSC_TO_RDX()			I_RDTSC_TO(rax, rdx)
 # define RDTSC_TO_RAX()			I_RDTSC_TO(rdx, rax)
 
-//# define DEBUG
+# define DEBUG
 # ifdef DEBUG
 #  define I_ASSERT_JCC(jcc, ...)	\
 	__VA_ARGS__;	\

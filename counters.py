@@ -4,7 +4,7 @@ import json
 import struct
 import subprocess
 
-NRUNS = 1
+NRUNS = 5
 
 
 def bstr_to_int(bstr):
@@ -216,7 +216,8 @@ class Run():
         return True
 
     def valid(self):
-
+        if self.set_len != 512 or self.custom_params.misaligned():
+            return False
         if not self.is_loop():
             if "CACHE" not in self.mov_todo:
                 return False
@@ -506,9 +507,14 @@ for todo in todos_movsb:
 
 runsout = {}
 i = 0
+f = open("log.txt", "w+")
 for run in runs:
     run.run()
     runsout[i] = run.out()
-    print(json.dumps(run.out(), indent=2))
-print("------------")
-print(json.dumps(runsout(), indent=2))
+    f.write(json.dumps(run.out(), indent=2) + "\n")
+    f.flush()
+
+f.write("------------\n")
+f.write(json.dumps(runsout, indent=2) + "\n")
+f.flush()
+f.close()

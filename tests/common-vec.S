@@ -47,7 +47,8 @@
 # ifndef SET_VEC
 #  define SET_VEC(v)	\
 	movq	$v, %rbp;	\
-	vpbroadcastq %rbp, %VEC;
+	vmovq	%rbp, %xmm0;	\
+	vpbroadcastq %xmm0, %VEC;
 # endif
 
 #endif
