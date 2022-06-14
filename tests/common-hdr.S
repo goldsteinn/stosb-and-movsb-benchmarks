@@ -12,7 +12,7 @@
 # define SYS_write			0x1
 
 # define STDOUT_FILENO			0x1
-# define STDERR_FILENO			0x1
+# define STDERR_FILENO			0x2
 
 # define ASSERT_ERROR_INFO		0x0a747265737361, 7
 # define SYS_WRITE_ERROR_INFO		0x0a293128727265, 7

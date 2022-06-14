@@ -216,8 +216,6 @@ class Run():
         return True
 
     def valid(self):
-        if self.set_len != 512 or self.custom_params.misaligned():
-            return False
         if not self.is_loop():
             if "CACHE" not in self.mov_todo:
                 return False
